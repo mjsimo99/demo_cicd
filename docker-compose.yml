@@ -1,0 +1,19 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: demo-postgres
+    environment:
+      POSTGRES_DB: demo_cicd
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: demo-cicd
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
