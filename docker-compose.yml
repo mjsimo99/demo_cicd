@@ -11,9 +11,15 @@ services:
       - "5432:5432"
 
   app:
-    build: .
+    image: satoru2001/demo-cicd:latest
     container_name: demo-cicd
     depends_on:
       - postgres
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/demo_cicd
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      DATABASE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
     ports:
       - "8080:8080"
