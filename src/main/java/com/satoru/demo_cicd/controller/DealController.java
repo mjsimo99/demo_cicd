@@ -27,6 +27,7 @@ public class DealController {
         return new ResponseEntity<>(deals, HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<DealRespDTO> getDealById(@PathVariable("id") Long dealId) {
         DealRespDTO dealDTO = dealService.getDealById(dealId);
