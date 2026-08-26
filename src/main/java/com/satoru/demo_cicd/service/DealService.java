@@ -10,9 +10,9 @@ public interface DealService {
 
     DealRespDTO getDealById(Long dealId);
 
-    DealDTO importDeal(DealDTO dealDTO);
+    DealRespDTO importDeal(DealDTO dealDTO);
 
-    DealDTO updateDeal(Long dealId, DealDTO dealDTO);
+    DealRespDTO updateDeal(Long dealId, DealDTO dealDTO);
 
     void deleteDeal(Long dealId);
 }

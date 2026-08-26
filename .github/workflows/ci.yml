@@ -30,11 +30,11 @@ jobs:
           --health-retries=5
 
     env:
-      DATABASE_URL: jdbc:postgresql://localhost:5432/demo_cicd
+      PGHOST: localhost
+      PGPORT: 5432
+      PGDATABASE: demo_cicd
       PGUSER: postgres
       PGPASSWORD: postgres
-      DATABASE_DRIVER_CLASS_NAME: org.postgresql.Driver
-      JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
 
     steps:
 

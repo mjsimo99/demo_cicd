@@ -53,14 +53,15 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public DealDTO importDeal(DealDTO dealDTO) {
+    public DealRespDTO importDeal(DealDTO dealDTO) {
         try {
             if (dealRepository.existsByDealUniqueId(dealDTO.getDealUniqueId())) {
                 throw new DealAlreadyExistsException("Deal with unique ID '" + dealDTO.getDealUniqueId() + "' already exists");
             }
             Deal deal = modelMapper.map(dealDTO, Deal.class);
+            deal.setId(null);
             deal = dealRepository.save(deal);
-            return modelMapper.map(deal, DealDTO.class);
+            return modelMapper.map(deal, DealRespDTO.class);
         } catch (Exception e) {
             if (e instanceof DealAlreadyExistsException) {
                 throw e;
@@ -70,7 +71,7 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public DealDTO updateDeal(Long dealId, DealDTO dealDTO) {
+    public DealRespDTO updateDeal(Long dealId, DealDTO dealDTO) {
         try {
             Deal existingDeal = dealRepository.findById(dealId)
                     .orElseThrow(() -> new ResourceNotFoundException("Deal not found with ID: " + dealId));
@@ -83,7 +84,7 @@ public class DealServiceImpl implements DealService {
             modelMapper.map(dealDTO, existingDeal);
             existingDeal.setId(dealId);
             existingDeal = dealRepository.save(existingDeal);
-            return modelMapper.map(existingDeal, DealDTO.class);
+            return modelMapper.map(existingDeal, DealRespDTO.class);
         } catch (Exception e) {
             if (e instanceof ResourceNotFoundException || e instanceof DealAlreadyExistsException) {
                 throw e;

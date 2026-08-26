@@ -16,10 +16,10 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: jdbc:postgresql://postgres:5432/demo_cicd
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: demo_cicd
       PGUSER: postgres
       PGPASSWORD: postgres
-      DATABASE_DRIVER_CLASS_NAME: org.postgresql.Driver
-      JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
     ports:
       - "8080:8080"
